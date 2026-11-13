@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Length Contraction Visualiser</title><link rel="stylesheet" href="/styles.css"><script src="/app.js" defer></script></head>
+<body><div class="shell">
+<header><div><p class="eyebrow">MAIT · APPLIED PHYSICS 1 · UNIT 04</p><h1>Length Contraction Visualiser</h1><p class="intro">Change the speed. Measure the difference.</p></div><span id="connection" class="status">Connecting to Python…</span></header>
+<main>
+<section class="controls panel" aria-labelledby="input-title"><div class="section-top"><h2 id="input-title">Your experiment</h2><span class="small">All lengths in metres</span></div>
+<form id="experiment"><div class="input-row"><div><label for="proper-length">Proper length <i>L</i><sub>0</sub> <span>(m)</span></label><input id="proper-length" type="number" min="0" max="1000000000000" step="any" value="100" required></div><div><label for="speed">Relative speed <i>v</i>/<i>c</i></label><input id="speed" type="number" min="0" max="0.999999" step="any" value="0.8" required></div><button type="submit" class="primary">Apply values</button></div>
+<label for="speed-slider" class="slider-label">Adjust speed <output id="speed-value">0.8000c</output></label><input id="speed-slider" type="range" min="0" max="0.999999" step="0.000001" value="0.8"><div class="scale"><span>0 · rest</span><span>0.5c</span><span>Approaching c →</span></div>
+<div class="presets" aria-label="Speed presets"><span>Try a speed</span><button type="button" data-beta="0">0</button><button type="button" data-beta="0.6">0.6c</button><button type="button" data-beta="0.8">0.8c</button><button type="button" data-beta="0.99">0.99c</button><button type="button" data-beta="0.999">0.999c</button></div>
+</form><p id="error" role="alert" hidden></p>
+<div class="metrics" aria-live="polite"><div><span>Measured length <i>L</i></span><strong id="measured">—</strong></div><div><span>Shortening <i>ΔL</i></span><strong id="shortening">—</strong></div><div><span>Contraction</span><strong id="percent">—</strong></div><div><span>Lorentz factor <i>γ</i></span><strong id="gamma">—</strong></div></div>
+<p class="small" id="speed-si">c = 299,792,458 m/s exactly</p>
+</section>
+<div class="visual-grid">
+<section class="panel motion-panel" aria-labelledby="motion-title"><div class="section-top"><div><p class="eyebrow">01 / COMPARE</p><h2 id="motion-title">The rod in motion</h2></div><button id="motion-toggle" type="button" aria-pressed="true">Pause motion</button></div>
+<canvas id="motion" role="img" aria-label="Rest-frame reference rod and contracted moving rod on the same length scale"></canvas>
+<div class="motion-actions"><button id="align" type="button">Align for measurement</button><span id="colour-key" class="small"><i class="swatch"></i> Colour follows contraction %</span></div>
+<p class="note">Two frame measurements, one length scale. Rod height stays fixed. Motion is slowed for display; it is not real-time travel.</p>
+</section>
+<section class="panel graph-panel" aria-labelledby="graph-title"><div class="section-top"><div><p class="eyebrow">02 / EXPLORE</p><h2 id="graph-title">Length against speed</h2></div><button id="sweep" type="button" aria-pressed="false">Sweep speed</button></div>
+<canvas id="graph" role="img" aria-label="Measured length versus speed graph with a live marker"></canvas><p class="note">The marker tracks your speed. Dashed line: classical constant length. c is a limit, excluded from the model.</p></section>
+</div>
+<section class="panel records" aria-labelledby="records-title"><div class="section-top"><div><p class="eyebrow">03 / RECORD</p><h2 id="records-title">Your observations</h2></div><div class="button-group"><button id="record" class="primary" type="button">Record reading</button><button id="export" type="button" disabled>Export CSV</button><button id="clear" type="button" disabled>Clear</button></div></div><p id="record-status" class="small" aria-live="polite">No readings recorded. Set your values, then record a reading.</p><div class="table-wrap"><table><thead><tr><th>L₀ (m)</th><th>v/c</th><th>γ</th><th>L (m)</th><th>ΔL (m)</th><th>Contraction (%)</th></tr></thead><tbody id="readings"></tbody></table></div></section>
+<section class="theory"><div><h2>The physics</h2><math display="block"><mi>L</mi><mo>=</mo><mfrac><msub><mi>L</mi><mn>0</mn></msub><mi>γ</mi></mfrac><mo>=</mo><msub><mi>L</mi><mn>0</mn></msub><msqrt><mn>1</mn><mo>−</mo><mfrac><msup><mi>v</mi><mn>2</mn></msup><msup><mi>c</mi><mn>2</mn></msup></mfrac></msqrt></math><p>L₀ is measured in the rod’s rest frame. L uses simultaneous endpoint positions in the observer’s frame. Only the dimension parallel to motion contracts.</p></div><div><h2>What this model assumes</h2><p>Each selected speed is a separate inertial case. A sweep compares cases; it does not model acceleration or physical squeezing. This is a coordinate measurement, not a camera view.</p><p class="small">Calculated in Python · Offline · No π required<br><a href="https://openstax.org/books/university-physics-volume-3/pages/5-4-length-contraction" target="_blank" rel="noreferrer">Physics reference: OpenStax §5.4 ↗</a></p></div></section>
+</main><footer><span>Maharaja Agrasen Institute of Technology, Delhi</span></footer>
+</div></body></html>
+
